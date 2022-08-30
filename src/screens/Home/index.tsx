@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useEffect, useState } from "react"
 import { apiAll } from "../../api/api"
 
 export default function Home(params:any) {
@@ -9,21 +9,18 @@ export default function Home(params:any) {
   
   //isso deve ir dentro do useEffect ?
   useEffect(()=>{
-
-    if (search.length != 0) {
-      return setCountrys([])
-    }else if (region != null) {
-      return setCountrys([])
-    } else {
-      const res = apiAll()
-      return setCountrys([res]) //all
+    async function getCountry(){
+      if (search.length != 0) {
+        return setCountrys([])
+      }else if (region != null) {
+        return setCountrys([])
+      } else {
+        return setCountrys(await apiAll()) //all
+      }
     }
-
+    getCountry()
   },[search,region])
 
-  console.log('data: ',countrys);
-  
-  
   return(
     <div className='p-2'>
       <h1>Home</h1>
@@ -35,12 +32,13 @@ export default function Home(params:any) {
       </div>
 
       <div>
-        {countrys.map((info:string|number)=>{
+        {countrys.data.map((data: any, i: any)=>{
+          console.log(data);
+          
           return(
-            <div key={1}>
-              <p>oi</p>
-            </div>
+            <p key={data.id}>{data.name}</p>
           )
+          
         })}
       </div>
 
