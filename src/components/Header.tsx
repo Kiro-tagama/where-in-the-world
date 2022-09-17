@@ -1,7 +1,10 @@
 export default function Header(props:any) {
   return(
-    <div>
-      cabecalho
-    </div>
+    <header>
+      <h1 className=" font-bold text-lg">Where in the world?</h1>
+      <button>
+        Dark mode
+      </button>
+    </header>
   )
 }

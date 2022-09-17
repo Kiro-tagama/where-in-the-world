@@ -1,5 +1,7 @@
-import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { apiAll } from "../../api/api"
+
+import {AiOutlineSearch} from 'react-icons/ai'
 
 export default function Home(params:any) {
   const [countrys, setCountrys] = useState<any>([])
@@ -21,27 +23,40 @@ export default function Home(params:any) {
     getCountry()
   },[search,region])
 
+  
   return(
-    <div className='p-2'>
-      <h1>Home</h1>
-      <div>
-        <div>
-          <span>icon</span>
-          <input type="text" value={search} onChange={(txt)=>setSearch(txt.target.value)} placeholder='Search Country'/>
+    <main>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center p-1.5 w-min rounded-md shadow-md">
+          <AiOutlineSearch className="mr-2 text-zinc-400"/>
+          <input type="text" value={search} 
+          onChange={(txt)=>setSearch(txt.target.value)} 
+          placeholder='Search Country'
+          className=" outline-none"/>
+        </div>
+
+        <div className="flex items-center p-1.5 rounded-md shadow-md">
+          filter region
         </div>
       </div>
-
-      <div>
-        {countrys.data.map((data: any, i: any)=>{
-          console.log(data);
-          
+    <br />
+      <div className="flex gap-4 flex-wrap">
+        {countrys.data.map((data)=>{
           return(
-            <p key={data.id}>{data.name}</p>
+            <div key={data.area}
+            className=' rounded-md shadow-md overflow-hidden w-60 flex flex-col'>
+              <img src={data.flags.svg} alt="" className=" object-cover"/>
+              <div className=" text-xs p-3 mt-auto">
+                <h1 className=" text-lg font-bold mb-2">{data.name.common}</h1>
+                <p><b>Population: </b>{data.population}</p>
+                <p><b>Region: </b>{data.continents}</p>
+                <p><b>Capital: </b>{data.capital}</p>
+              </div>
+            </div>
           )
-          
         })}
       </div>
 
-    </div>
+    </main>
   )
 }

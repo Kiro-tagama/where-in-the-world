@@ -1,0 +1,7 @@
+header{
+  @apply flex justify-between p-3 shadow-md
+}
+
+main{
+  @apply p-3
+}
