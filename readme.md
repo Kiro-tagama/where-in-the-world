@@ -7,6 +7,3 @@
  - typescript
  - axios
  - tailwind css
-
-
-errr api
