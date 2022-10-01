@@ -1,4 +1,4 @@
-import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useEffect, useState } from "react"
+import { Key, useEffect, useState } from "react"
 import { apiAll, apiName, apiRegion } from "../../api/api"
 
 import {AiOutlineSearch, AiOutlineLoading, AiOutlineCloseSquare} from 'react-icons/ai'
@@ -10,10 +10,11 @@ interface Countrys{
   name: { common: string }; 
   population: string; 
   continents: string; 
-  capital: string
+  capital: string;
+  ccn3: String
 }
 
-export default function Home(params:any) {
+export default function Home(setCode:any) {
   
   const [countrys, setCountrys] = useState<Countrys[]>([])
   
@@ -28,11 +29,11 @@ export default function Home(params:any) {
     </div>
     )
   const cards=(
-    <div className="grid gap-4 justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div className="grid gap-10 justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     {countrys.map(
         function(data:any){
       return (
-        <Link to={'country/' + data.area} key={data.key}
+        <Link to={'country/'} key={data.key} onClick={()=>{setCode(data.ccn3)}}
           className=' rounded-md shadow-md overflow-hidden w-auto flex flex-col'>
           <img src={data.flags.svg} alt="" className=" object-cover" loading="lazy"/>
           <div className=" text-xs p-3 mt-auto">
@@ -97,6 +98,8 @@ export default function Home(params:any) {
           </select>
         </div>
       </div>
+    <br />
+      <p >Total of countries {countrys.length}</p>
     <br />
       {exibir}
     </main>
