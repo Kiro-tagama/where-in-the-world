@@ -14,7 +14,7 @@ interface Countrys{
   ccn3: String
 }
 
-export default function Home(setCode:any) {
+export default function Home() {
   
   const [countrys, setCountrys] = useState<Countrys[]>([])
   
@@ -33,8 +33,8 @@ export default function Home(setCode:any) {
     {countrys.map(
         function(data:any){
       return (
-        <Link to={'country/'} key={data.key} onClick={()=>{setCode(data.ccn3)}}
-          className=' rounded-md shadow-md overflow-hidden w-auto flex flex-col'>
+        <Link to={'country/'+data.ccn3} key={data.key}
+          className=' rounded-md shadow-md overflow-hidden w-full flex flex-col'>
           <img src={data.flags.svg} alt="" className=" object-cover" loading="lazy"/>
           <div className=" text-xs p-3 mt-auto">
             <h1 className=" text-lg font-bold mb-2">{data.name.common}</h1>

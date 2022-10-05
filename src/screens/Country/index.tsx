@@ -1,21 +1,74 @@
 import { useEffect, useState } from "react"
+import { AiOutlineLoading } from "react-icons/ai";
+import { useParams } from "react-router-dom";
 import { apiCode } from "../../api/api"
 
-export default function Country({code}:any) {
-  const [countrySelected, setCountrySelected]=useState(null)
+interface Country{
+  flags: { png: string}; 
+  area:String;
+  name: { common: string }; 
+  population: string; 
+  continents: string; 
+  capital: string;
+  ccn3: String
+}
+
+export default function Country() {
+
+  let { id } = useParams();
+
+  const [countrySelected, setCountrySelected]=useState<Country>()
 
   useEffect(()=>{
     async function getCountry(){
-      setCountrySelected(await apiCode(code))
+      setCountrySelected(await apiCode(id))
     }
     getCountry()
-  },[countrySelected])
+  },[])
 
-  //console.log(countrySelected);
+  const country= countrySelected
+
+  console.log(country);
   
   return(
-    <div className="flex flex-row justify-center flex-wrap">
-      <img src="" alt="" />
+    <div className="flex flex-1 flex-row justify-center items-center flex-wrap h-full">
+      {countrySelected == undefined?
+      (<div className="flex flex-1 mt-28 justify-center items-center">
+        <AiOutlineLoading
+          className=" text-[50px] animate-spin text-zinc-300"
+        />
+      </div>):
+      (
+        <div className="flex flex-row flex-wrap justify-center items-center h-[90vh]">
+          <img src={country.flags.png} alt="" className="w-100 h-100 object-cover p-4" />
+          <div className="p-4">
+            <h1 className="text-center font-bold my-4 text-2xl">{country.name.common}</h1>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                {/* <p><b>Native Name:</b> {country.name.nativeName.isl.official}</p> */}
+                <p><b>Population:</b> {country.population}</p>
+                <p><b>Region:</b> {country.region}</p>
+                <p><b>Sub Region:</b> {country.subregion}</p>
+                <p><b>Capital:</b> {country.capital[0]}</p>
+              </div>
+              <div>
+                <p><b>Top Level Domain:</b> {country.tld}</p>
+                {/* <p><b>Currencies:</b> {country.currencies.name}</p> */}
+                {/* <p><b>Languages:</b>{country.languages}</p> */}
+              </div>
+            </div>
+            <p className="mt-4">
+              <b>Border Countrys:</b>
+              {/* {country.borders.map(x=>
+              <span
+              className="p-2 shadow-md rounded-md mx-2"
+              >{x}</span>)} */}
+            </p>
+            
+          </div>
+        </div>
+      )
+      }
     </div>
   )
 }

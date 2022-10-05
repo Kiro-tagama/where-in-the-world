@@ -21,10 +21,10 @@ async function apiRegion(region:String) {
   return data.data
 }
 
-async function apiCode(code:Number) {
+async function apiCode(code:String|undefined) {
   const data:any = await axios.get(`https://restcountries.com/v3.1/alpha/${code}`)
 
-  return data.data
+  return data.data[0]
 }
 
 export {apiAll,apiName,apiRegion,apiCode}
