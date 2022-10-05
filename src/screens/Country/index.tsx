@@ -40,10 +40,10 @@ export default function Country() {
       </div>):
       (
         <div className="flex flex-row flex-wrap justify-center items-center h-[90vh]">
-          <img src={country.flags.png} alt="" className="w-100 h-100 object-cover p-4" />
-          <div className="p-4">
-            <h1 className="text-center font-bold my-4 text-2xl">{country.name.common}</h1>
-            <div className="grid grid-cols-2 gap-4">
+          <img src={country.flags.png} alt="" className=" object-cover p-4" />
+          <div className="p-4 w-full sm:w-auto">
+            <h1 className="font-bold my-4 text-2xl">{country.name.common}</h1>
+            <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 {/* <p><b>Native Name:</b> {country.name.nativeName.isl.official}</p> */}
                 <p><b>Population:</b> {country.population}</p>
