@@ -10,6 +10,9 @@ interface Country{
   population: string; 
   continents: string; 
   capital: string;
+  region: String;
+  subregion: String;
+  tld: String;
   ccn3: String
 }
 
@@ -17,7 +20,7 @@ export default function Country() {
 
   let { id } = useParams();
 
-  const [countrySelected, setCountrySelected]=useState<Country>()
+  const [countrySelected, setCountrySelected]=useState<Country | any>([])
 
   useEffect(()=>{
     async function getCountry(){
@@ -26,13 +29,13 @@ export default function Country() {
     getCountry()
   },[])
 
-  const country= countrySelected
+  const country = countrySelected
 
   console.log(country);
   
   return(
     <div className="flex flex-1 flex-row justify-center items-center flex-wrap h-full">
-      {countrySelected == undefined?
+      {countrySelected == null?
       (<div className="flex flex-1 mt-28 justify-center items-center">
         <AiOutlineLoading
           className=" text-[50px] animate-spin text-zinc-300"
