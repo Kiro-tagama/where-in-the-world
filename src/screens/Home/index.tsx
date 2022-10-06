@@ -1,7 +1,7 @@
 import { Key, useEffect, useState } from "react"
 import { apiAll, apiName, apiRegion } from "../../api/api"
 
-import {AiOutlineSearch, AiOutlineLoading, AiOutlineCloseSquare} from 'react-icons/ai'
+import {AiOutlineSearch, AiOutlineLoading, AiOutlineCloseSquare, AiTwotoneHome} from 'react-icons/ai'
 import { Link } from "react-router-dom"
 
 interface Countrys{
@@ -14,7 +14,7 @@ interface Countrys{
   ccn3: String
 }
 
-export default function Home() {
+export default function Home({theme}:any) {
   
   const [countrys, setCountrys] = useState<Countrys[]>([])
   
@@ -34,7 +34,7 @@ export default function Home() {
         function(data:any){
       return (
         <Link to={'country/'+data.ccn3} key={data.key}
-          className=' rounded-md shadow-md overflow-hidden w-full flex flex-col'>
+          className={theme.element+ ' rounded-md shadow-md overflow-hidden w-full flex flex-col'}>
           <img src={data.flags.svg} alt="" className=" object-cover" loading="lazy"/>
           <div className=" text-xs p-3 mt-auto">
             <h1 className=" text-lg font-bold mb-2">{data.name.common}</h1>
@@ -71,22 +71,23 @@ export default function Home() {
   },[search,region,exibir])
   
   return(
-    <main>
+    <main className={theme.base+" min-h-[90vh] "}>
       <div className="flex flex-wrap items-center justify-between">
-        <div className="flex items-center p-1.5 w-min rounded-md shadow-md">
+        <div className={theme.element+ " flex items-center p-1.5 w-min rounded-md shadow-md"}>
           <AiOutlineSearch className="mr-2 text-zinc-400"/>
           <input type="text" value={search} 
           onChange={(txt)=>setSearch(txt.target.value)} 
           placeholder='Search Country'
-          className=" outline-none mx-2"/>
+          className=" outline-none mx-2 bg-transparent"/>
 
           {search.length>0 ?
           <AiOutlineCloseSquare className="mr-2 text-zinc-400 cursor-pointer" onClick={()=>setSearch('')}/> : null}
         </div>
 
-        <div className="flex items-center p-1.5 rounded-md shadow-md">
+        <div className={theme.element+ " flex items-center p-1.5 rounded-md shadow-md"}>
           <select name="regions" id="regions"
-          className="outline-none"
+          className={theme.element}
+          style={{outline:"none"}}
           onChange={(event)=>setRegion(event.target.value)}
           >
             <option value="All">All region</option>

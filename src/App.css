@@ -1,5 +1,5 @@
 header{
-  @apply flex justify-between p-3 shadow-md
+  @apply flex justify-between p-3 h-[10vh] items-center
 }
 
 main{

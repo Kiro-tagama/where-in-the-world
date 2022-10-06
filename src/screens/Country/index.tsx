@@ -13,10 +13,10 @@ interface Country{
   region: String;
   subregion: String;
   tld: String;
-  ccn3: String
+  ccn3: String;
 }
 
-export default function Country() {
+export default function Country({theme}:any) {
 
   let { id } = useParams();
 
@@ -34,7 +34,7 @@ export default function Country() {
   console.log(country);
   
   return(
-    <div className="flex flex-1 flex-row justify-center items-center flex-wrap h-full">
+    <div className={theme.base +" flex flex-1 flex-row justify-center items-center flex-wrap h-[90vh]"}>
       {countrySelected == null?
       (<div className="flex flex-1 mt-28 justify-center items-center">
         <AiOutlineLoading
@@ -42,7 +42,7 @@ export default function Country() {
         />
       </div>):
       (
-        <div className="flex flex-row flex-wrap justify-center items-center h-[90vh]">
+        <div className="flex flex-row flex-wrap justify-center items-center ">
           <img src={country.flags.png} alt="" className=" object-cover p-4" />
           <div className="p-4 w-full sm:w-auto">
             <h1 className="font-bold my-4 text-2xl">{country.name.common}</h1>
