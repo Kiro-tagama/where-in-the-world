@@ -20,14 +20,14 @@ export default function Country() {
 
   let { id } = useParams();
 
-  const [countrySelected, setCountrySelected]=useState<Country | any>([])
+  const [countrySelected, setCountrySelected]=useState<any>()
 
   useEffect(()=>{
     async function getCountry(){
       setCountrySelected(await apiCode(id))
     }
     getCountry()
-  },[])
+  },[id])
 
   const country = countrySelected
 
@@ -48,7 +48,7 @@ export default function Country() {
             <h1 className="font-bold my-4 text-2xl">{country.name.common}</h1>
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                {/* <p><b>Native Name:</b> {country.name.nativeName.isl.official}</p> */}
+                {/*<p><b>Native Name:</b> {country.name.nativeName.isl.official}</p> */}
                 <p><b>Population:</b> {country.population}</p>
                 <p><b>Region:</b> {country.region}</p>
                 <p><b>Sub Region:</b> {country.subregion}</p>
