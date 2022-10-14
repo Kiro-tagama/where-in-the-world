@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
-export default function Header({theme,setTheme,ligth,dark}:any) {
+import {BsFillMoonFill,BsFillSunFill} from "react-icons/all"
+
+export default function Header({theme, selecTheme, upTheme}:any) {
   return(
     <header className={theme.element}>
       <Link to={"/"} className=" font-bold sm:text-2xl cursor-pointer "
       >Where in the world?</Link>
-      {theme == ligth? 
-        <button onClick={()=>setTheme(dark)}>
-        Dark mode
+      {selecTheme == "ligth"? 
+        <button onClick={()=>upTheme()}>
+          <BsFillMoonFill/>
+          Dark mode
         </button>:
-        <button onClick={()=>setTheme(ligth)}>
+        <button onClick={()=>upTheme()}>
+          <BsFillSunFill/>
           Ligth mode
         </button>
       }
