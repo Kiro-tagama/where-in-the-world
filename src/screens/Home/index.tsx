@@ -78,7 +78,7 @@ export default function Home({theme}:any) {
           <input type="text" value={search} 
           onChange={(txt)=>setSearch(txt.target.value)} 
           placeholder='Search Country'
-          className=" outline-none mx-2 bg-transparent"/>
+          className=" outline-none mx-2 bg-transparent flex-1"/>
 
           {search.length>0 ?
           <AiOutlineCloseSquare className="mr-2 text-zinc-400 cursor-pointer" onClick={()=>setSearch('')}/> : null}

@@ -34,7 +34,7 @@ export default function Country({theme}:any) {
   console.log(country);
   
   return(
-    <div className={theme.base +" flex flex-1 flex-row justify-center items-center flex-wrap h-[90vh]"}>
+    <div className={theme.base +" flex flex-1 flex-row justify-center items-center flex-wrap min-h-[90vh]"}>
       {countrySelected == null?
       (<div className="flex flex-1 mt-28 justify-center items-center">
         <AiOutlineLoading
@@ -43,30 +43,33 @@ export default function Country({theme}:any) {
       </div>):
       (
         <div className="flex flex-row flex-wrap justify-center items-center ">
-          <img src={country.flags.png} alt="" className=" object-cover p-4" />
+          <img src={country.flags.png} alt="" className=" object-cover m-4 shadow-lg" />
           <div className="p-4 w-full sm:w-auto">
             <h1 className="font-bold my-4 text-2xl">{country.name.common}</h1>
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                {/*<p><b>Native Name:</b> {country.name.nativeName.isl.official}</p> */}
-                <p><b>Population:</b> {country.population}</p>
+                <p><b>Native Name:</b> {country.altSpellings[1]}</p>
+                <p><b>Population:</b> {Intl.NumberFormat('es-US').format(country.population)}</p>
                 <p><b>Region:</b> {country.region}</p>
                 <p><b>Sub Region:</b> {country.subregion}</p>
                 <p><b>Capital:</b> {country.capital[0]}</p>
               </div>
               <div>
                 <p><b>Top Level Domain:</b> {country.tld}</p>
-                {/* <p><b>Currencies:</b> {country.currencies.name}</p> */}
-                {/* <p><b>Languages:</b>{country.languages}</p> */}
+                <p><b>Currencies:</b> {Object.keys(country.currencies)}</p>
+                <p><b>Languages:</b> {Object.values(country.languages).join(', ')}</p>
               </div>
             </div>
-            <p className="mt-4">
-              {/* <b>Border Countrys:</b> */}
-              {/* {country.borders.map(x=>
+            {country.borders ?
+            <div className="mt-4 flex items-center flex-warp">
+              <b>Border Countrys:</b>
+              {country.borders.map((x:any)=>
               <span
-              className="p-2 shadow-md rounded-md mx-2"
-              >{x}</span>)} */}
-            </p>
+              className={"p-2 shadow-md rounded-md mx-2 "+theme.element}
+              >{x}</span>)}
+            </div>
+            :null
+            }
             
           </div>
         </div>
