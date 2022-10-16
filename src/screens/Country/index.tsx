@@ -61,11 +61,11 @@ export default function Country({theme}:any) {
               </div>
             </div>
             {country.borders ?
-            <div className="mt-4 flex items-center flex-warp">
+            <div className="mt-4 flex items-center flex-wrap gap-3">
               <b>Border Countrys:</b>
               {country.borders.map((x:any)=>
               <span
-              className={"p-2 shadow-md rounded-md mx-2 "+theme.element}
+              className={"p-2 shadow-md rounded-md"+theme.element}
               >{x}</span>)}
             </div>
             :null
