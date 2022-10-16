@@ -61,7 +61,7 @@ export default function Country({theme}:any) {
               </div>
             </div>
             <p className="mt-4">
-              <b>Border Countrys:</b>
+              {/* <b>Border Countrys:</b> */}
               {/* {country.borders.map(x=>
               <span
               className="p-2 shadow-md rounded-md mx-2"

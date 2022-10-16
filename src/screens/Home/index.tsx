@@ -73,7 +73,7 @@ export default function Home({theme}:any) {
   return(
     <main className={theme.base+" min-h-[90vh] "}>
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <div className={"w-full sm:w-min flex items-center p-1.5 rounded-md shadow-md " + theme.element}>
+        <div className={"w-full sm:w-min flex items-center p-2 rounded-md shadow-md " + theme.element}>
           <AiOutlineSearch className="mr-2 text-zinc-400"/>
           <input type="text" value={search} 
           onChange={(txt)=>setSearch(txt.target.value)} 
@@ -84,7 +84,7 @@ export default function Home({theme}:any) {
           <AiOutlineCloseSquare className="mr-2 text-zinc-400 cursor-pointer" onClick={()=>setSearch('')}/> : null}
         </div>
 
-        <div className={'w-full sm:w-min flex items-center p-1.5 rounded-md shadow-md '+ theme.element}>
+        <div className={'w-full sm:w-auto h-10 flex items-center p-2 rounded-md shadow-md '+ theme.element}>
           <select name="regions" id="regions"
           className={'w-full '+ theme.element}
           style={{outline:"none"}}
